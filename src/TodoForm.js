@@ -3,10 +3,8 @@ import useInputState from "./hooks/useInputState";
 import Paper from "@material-ui/core/Paper";
 import TextField from "@material-ui/core/TextField";
 
-function TodoForm(props) {
+function TodoForm({ addNewTodo }) {
   const [taskName, setTaskName, resetTaskName] = useInputState("");
-
-  const { addNewTodo } = props;
 
   return (
     <Paper style={{ margin: "1rem 0", padding: "0 1rem" }}>
