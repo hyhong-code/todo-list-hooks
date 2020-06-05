@@ -9,21 +9,14 @@ import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import DeleteRoundedIcon from "@material-ui/icons/DeleteRounded";
 import EditIcon from "@material-ui/icons/Edit";
 
-function TodoItem({
-  taskName,
-  completed,
-  id,
-  removeTodo,
-  toggleTodo,
-  updateTodo,
-}) {
+function TodoItem({ task, completed, id, removeTodo, toggleTodo, updateTodo }) {
   const [isEditing, toggleIsEditing] = useToggleState(false);
   return (
     <ListItem style={{ height: "64px" }}>
       {isEditing ? (
         <EditForm
           updateTodo={updateTodo}
-          prevItemName={taskName}
+          prevItemName={task}
           id={id}
           finishEditing={toggleIsEditing}
         />
@@ -35,7 +28,7 @@ function TodoItem({
             onClick={() => toggleTodo(id)}
           />
           <ListItemText style={{ textDecoration: completed && "line-through" }}>
-            {taskName}
+            {task}
           </ListItemText>
           <ListItemSecondaryAction>
             <IconButton aria-label="Edit" onClick={toggleIsEditing}>

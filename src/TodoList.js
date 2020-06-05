@@ -13,9 +13,7 @@ function TodoList({ todos, removeTodo, toggleTodo, updateTodo }) {
           {todos.map((todo, i) => (
             <div key={todo.id}>
               <TodoItem
-                id={todo.id}
-                taskName={todo.task}
-                completed={todo.completed}
+                {...todo}
                 removeTodo={removeTodo}
                 toggleTodo={toggleTodo}
                 updateTodo={updateTodo}
