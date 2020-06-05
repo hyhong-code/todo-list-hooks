@@ -6,25 +6,27 @@ import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
 
 function TodoList({ todos, removeTodo, toggleTodo, updateTodo }) {
-  return (
-    <Paper>
-      <List>
-        {todos.map((todo, i) => (
-          <div key={todo.id}>
-            <TodoItem
-              id={todo.id}
-              taskName={todo.task}
-              completed={todo.completed}
-              removeTodo={removeTodo}
-              toggleTodo={toggleTodo}
-              updateTodo={updateTodo}
-            />
-            {i !== todos.length - 1 && <Divider />}
-          </div>
-        ))}
-      </List>
-    </Paper>
-  );
+  if (todos.length)
+    return (
+      <Paper>
+        <List>
+          {todos.map((todo, i) => (
+            <div key={todo.id}>
+              <TodoItem
+                id={todo.id}
+                taskName={todo.task}
+                completed={todo.completed}
+                removeTodo={removeTodo}
+                toggleTodo={toggleTodo}
+                updateTodo={updateTodo}
+              />
+              {i !== todos.length - 1 && <Divider />}
+            </div>
+          ))}
+        </List>
+      </Paper>
+    );
+  return null;
 }
 
 export default TodoList;
