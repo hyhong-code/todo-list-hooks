@@ -12,12 +12,13 @@ function EditForm({ updateTodo, id, finishEditing, prevItemName }) {
   };
 
   return (
-    <form onSubmit={handleUpdate}>
+    <form onSubmit={handleUpdate} style={{ marginLeft: "1rem", width: "50%" }}>
       <TextField
         margin="normal"
         value={itemName}
         onChange={setItemName}
         fullWidth
+        autoFocus
       />
     </form>
   );
