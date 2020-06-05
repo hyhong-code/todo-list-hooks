@@ -13,8 +13,10 @@ function TodoList(props) {
           <>
             <TodoItem
               key={todo.id}
+              id={todo.id}
               taskName={todo.task}
               completed={todo.completed}
+              removeTodo={props.removeTodo}
             />
             <Divider />
           </>

@@ -9,7 +9,7 @@ import Grid from "@material-ui/core/Grid";
 
 function TodoApp(props) {
   const defaultTodos = [
-    { id: 1, task: "Learn React", completed: false },
+    { id: 1, task: "Learn React", completed: true },
     { id: 2, task: "Build a full stack app", completed: false },
     { id: 3, task: "Find a job", completed: false },
   ];
@@ -18,6 +18,10 @@ function TodoApp(props) {
 
   const addNewTodo = (itemName) => {
     setTodos([...todos, { id: 4, task: itemName, completed: false }]);
+  };
+
+  const removeTodo = (id) => {
+    setTodos(todos.filter((todo) => todo.id !== id));
   };
 
   return (
@@ -32,13 +36,13 @@ function TodoApp(props) {
     >
       <AppBar color="primary" position="static" style={{ height: "64px" }}>
         <Toolbar>
-          <Typography color="inherit'">TODOS WITH HOOKS</Typography>
+          <Typography color="inherit">TODOS WITH HOOKS</Typography>
         </Toolbar>
       </AppBar>
       <Grid container justify="center" style={{ marginTop: "1rem" }}>
         <Grid item xs={11} md={8} lg={4}>
           <TodoForm addNewTodo={addNewTodo} />
-          <TodoList todos={todos} />
+          <TodoList todos={todos} removeTodo={removeTodo} />
         </Grid>
       </Grid>
     </Paper>
