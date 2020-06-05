@@ -25,6 +25,17 @@ function TodoApp(props) {
     setTodos(todos.filter((todo) => todo.id !== id));
   };
 
+  const updateTodo = (id, newTaskName) => {
+    setTodos(
+      todos.map((todo) => {
+        if (todo.id === id) {
+          return { ...todo, task: newTaskName };
+        }
+        return todo;
+      })
+    );
+  };
+
   const toggleTodo = (id) => {
     setTodos(
       todos.map((todo) => {
@@ -58,6 +69,7 @@ function TodoApp(props) {
             todos={todos}
             removeTodo={removeTodo}
             toggleTodo={toggleTodo}
+            updateTodo={updateTodo}
           />
         </Grid>
       </Grid>
