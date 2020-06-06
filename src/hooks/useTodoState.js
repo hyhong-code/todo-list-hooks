@@ -7,6 +7,7 @@ export default (initialTodos) => {
   const addNewTodo = (itemName) => {
     setTodos([...todos, { id: uuidv4(), task: itemName, completed: false }]);
   };
+
   const removeTodo = (id) => {
     setTodos(todos.filter((todo) => todo.id !== id));
   };

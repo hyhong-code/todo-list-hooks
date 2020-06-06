@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import useToggleState from "./hooks/useToggleState";
 import EditForm from "./EditForm";
 import ListItem from "@material-ui/core/ListItem";
@@ -8,24 +8,21 @@ import IconButton from "@material-ui/core/IconButton";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import DeleteRoundedIcon from "@material-ui/icons/DeleteRounded";
 import EditIcon from "@material-ui/icons/Edit";
+import { TodosContext } from "./contexts/TodosContext";
 
-function TodoItem({ task, completed, id, removeTodo, toggleTodo, updateTodo }) {
+function TodoItem({ task, completed, id }) {
   const [isEditing, toggleIsEditing] = useToggleState(false);
+  const { dispatch } = useContext(TodosContext);
   return (
     <ListItem style={{ height: "64px" }}>
       {isEditing ? (
-        <EditForm
-          updateTodo={updateTodo}
-          prevItemName={task}
-          id={id}
-          finishEditing={toggleIsEditing}
-        />
+        <EditForm prevItemName={task} id={id} finishEditing={toggleIsEditing} />
       ) : (
         <>
           <Checkbox
             tabIndex={-1}
             checked={completed}
-            onClick={() => toggleTodo(id)}
+            onClick={() => dispatch({ type: "TOGGLE", id: id })}
           />
           <ListItemText style={{ textDecoration: completed && "line-through" }}>
             {task}
@@ -34,10 +31,13 @@ function TodoItem({ task, completed, id, removeTodo, toggleTodo, updateTodo }) {
             <IconButton aria-label="Edit" onClick={toggleIsEditing}>
               <EditIcon />
             </IconButton>
-            <IconButton aria-label="Delete" onClick={() => removeTodo(id)}>
+            <IconButton
+              aria-label="Delete"
+              onClick={() => dispatch({ type: "REMOVE", id: id })}
+            >
               <DeleteRoundedIcon />
             </IconButton>
-          </ListItemSecondaryAction>{" "}
+          </ListItemSecondaryAction>
         </>
       )}
     </ListItem>
