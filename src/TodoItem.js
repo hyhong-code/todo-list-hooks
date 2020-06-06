@@ -8,11 +8,11 @@ import IconButton from "@material-ui/core/IconButton";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import DeleteRoundedIcon from "@material-ui/icons/DeleteRounded";
 import EditIcon from "@material-ui/icons/Edit";
-import { TodosContext } from "./contexts/TodosContext";
+import { DispatchContext } from "./contexts/TodosContext";
 
 function TodoItem({ task, completed, id }) {
   const [isEditing, toggleIsEditing] = useToggleState(false);
-  const { dispatch } = useContext(TodosContext);
+  const dispatch = useContext(DispatchContext);
   return (
     <ListItem style={{ height: "64px" }}>
       {isEditing ? (
